@@ -1,4 +1,5 @@
 const { Conflict } = require("http-errors");
+const gravatar = require("gravatar");
 const { findUserByEmail, createUser } = require("../../services/users");
 const { hashPassword } = require("../../middlewares/passwordHash");
 
@@ -11,10 +12,12 @@ const signup = async (req, res, next) => {
     if (user) {
       throw new Conflict(`Email in use`);
     }
-    await createUser(email, hashedPassword);
+    const avatarURL = gravatar.url(email);
+    await createUser(email, hashedPassword, avatarURL);
     res.status(201).json({
       user: {
         email,
+        avatarURL,
         subscription: "starter",
       },
     });
