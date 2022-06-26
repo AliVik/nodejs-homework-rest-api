@@ -4,7 +4,7 @@ const createError = require("http-errors");
 const updateSubscription = async (req, res, next) => {
   const { _id } = req.user;
   const { subscription } = req.body;
-  console.log(req.body);
+
   try {
     const result = await findUserAndUpdate(_id, {
       subscription,
