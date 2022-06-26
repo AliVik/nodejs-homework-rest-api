@@ -11,7 +11,7 @@ const login = async (req, res, next) => {
     const user = await findUserByEmail({ email });
     const validPassword = comparePassword(password, user.password);
 
-    if (!user || !validPassword) {
+    if (!user || !user.verify || !validPassword) {
       throw new Unauthorized("Email or password is wrong");
     }
 
