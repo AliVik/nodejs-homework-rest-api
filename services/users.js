@@ -4,8 +4,8 @@ const findUserByEmail = async ({ email }) => {
   return await User.findOne({ email });
 };
 
-const createUser = async (email, password) => {
-  return await User.create({ email, password });
+const createUser = async (email, password, avatarURL) => {
+  return await User.create({ email, password, avatarURL });
 };
 
 const findUserById = async (id) => {
