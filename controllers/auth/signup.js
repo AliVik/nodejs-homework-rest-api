@@ -14,7 +14,7 @@ const signup = async (req, res, next) => {
     }
     const avatarURL = gravatar.url(email);
     await createUser(email, hashedPassword, avatarURL);
-    res.status(201).json({
+    return res.status(201).json({
       user: {
         email,
         avatarURL,
